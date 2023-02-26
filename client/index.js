@@ -1,10 +1,15 @@
 import React from "react";
+import { ReactDOM } from 'react-dom';
 import { HashRouter, Route } from "react-router-dom";
-import { ApolloClient } from "@apollo/client";
-import { ApolloProvider } from "react-apollo";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import SongList from "./components/SongList";
 
-const client  = new ApolloClient({});
+const client  = new ApolloClient({
+  uri:'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
+});
+
 const Root = () => {
   return (
     <ApolloProvider client={client}>
@@ -13,4 +18,4 @@ const Root = () => {
   );
 };
 
-ReactDOM.render(<Root />, document.querySelector("#root"));
+ReactDOM.render (<Root />, document.querySelector("#root"));
