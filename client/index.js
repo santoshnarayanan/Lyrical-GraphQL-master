@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactDOM } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { HashRouter, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
