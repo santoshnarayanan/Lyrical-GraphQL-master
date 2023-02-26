@@ -13,7 +13,9 @@ const client  = new ApolloClient({
 const Root = () => {
   return (
     <ApolloProvider client={client}>
-      <SongList />
+        <HashRouter>
+          <Route exact path = "/" component={SongList} />
+        </HashRouter>
     </ApolloProvider>
   );
 };
