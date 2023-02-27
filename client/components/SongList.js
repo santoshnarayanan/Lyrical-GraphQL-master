@@ -25,11 +25,14 @@ class SongList extends Component{
     }
 }
 
+//Fetch Id and title , Id is required to pass key in React component
 const query = gql`
 {
     songs{
+        id
         title
     }
-}`;
+}
+`;
 
 export default graphql(query)(SongList);
