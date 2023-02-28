@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { gql } from '@apollo/client'; //Fetch graphql query
+import  {graphql} from '@apollo/client/react/hoc'; //bind component and query
 
 class SongCreate extends Component{
     constructor(props){
@@ -10,7 +11,11 @@ class SongCreate extends Component{
 
     onSubmit(event){
         event.preventDefault();
-
+        this.props.mutate({
+            variables: {
+                title: this.state.title
+            }
+        });
 
     }
 
@@ -29,14 +34,12 @@ class SongCreate extends Component{
     }
 }
 
-const mutations = gql
-`
-mutation{
-    addSong(title:){
-        id
+const mutation = gql`
+mutation AddSong($title: String) {
+    addSong(title: $title) {
         title
     }
 }
 `;
 
-export default SongCreate;
+export default graphql(mutation)(SongCreate);
