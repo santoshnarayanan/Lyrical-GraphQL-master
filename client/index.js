@@ -18,7 +18,7 @@ const Root = () => {
       <HashRouter>
         <Switch>
           <Route path="/songs" exact component={() => <SongList />} />
-          <Route path="/songs/new" exact component={() => <SongCreate />} />
+          <Route path="/song/new" exact component={() => <SongCreate />} />
         </Switch>
       </HashRouter>
     </ApolloProvider>
