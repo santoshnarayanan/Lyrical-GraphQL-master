@@ -3,6 +3,7 @@ import { gql } from "@apollo/client"; //Fetch graphql query
 import { graphql } from "@apollo/client/react/hoc"; //bind component and query
 import { Link } from "react-router-dom";
 import query from '../queries/fetchSongs';
+
 class SongList extends Component {
   renderSongs() {
     return this.props.data.songs.map((song) => {
@@ -29,4 +30,16 @@ class SongList extends Component {
   }
 }
 
-export default graphql(query)(SongList);
+const mutation = gql
+`
+  mutation DeleteSong($id: ID) {
+    deleteSong(id: $id) {
+      id
+    }
+  }
+`;
+
+//Invoke mutation and then refresh SongList
+export default graphql(mutation)(
+  graphql(query)(SongList)
+);
