@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { gql } from "@apollo/client"; //Fetch graphql query
 import { graphql } from "@apollo/client/react/hoc"; //bind component and query
 import { Link } from "react-router-dom";
+import query from '../queries/fetchSongs';
 class SongList extends Component {
   renderSongs() {
     return this.props.data.songs.map((song) => {
@@ -27,15 +28,5 @@ class SongList extends Component {
     );
   }
 }
-
-//Fetch Id and title , Id is required to pass key in React component
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
 
 export default graphql(query)(SongList);

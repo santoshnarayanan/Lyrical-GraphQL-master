@@ -1,7 +1,9 @@
 import React,{ Component } from 'react';
 import { gql } from '@apollo/client'; //Fetch graphql query
 import  {graphql} from '@apollo/client/react/hoc'; //bind component and query
-import { Link, useHistory } from "react-router-dom";
+//usehistory is part of react-router-dom version(package.json) is used, hence removed hashHistory
+import { Link, useHistory } from "react-router-dom"; 
+import query from '../queries/fetchSongs';
 class SongCreate extends Component{
     constructor(props){
         super(props);
@@ -13,9 +15,8 @@ class SongCreate extends Component{
         event.preventDefault();
 
         this.props.mutate({
-            variables: {
-                title: this.state.title
-            }
+            variables: { title: this.state.title  },
+            refetchQueries: [{ query: query }],
         }).then(()=>useHistory.push('/songs')) //Here newsong is not rendered automatically without manual refresh
         .catch(err=>console.log(err));
     }
